@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Xb8wXfcBqh/tOz0aH7xLON2xx3hTnxDLDNh8mXe/PATxmZ+S/FnO03R/oSFFWTk776H0BYFXA+dEypmjUOVsjw==",
+  "dgSpecHash": "2aZZWN39mASZ85/xdQaAmfkwAlj7bANGMiNELtUKnBh/Xhf1Eu0IS09tvNY7sKIMf+cviSeku936jEHoSAXXZA==",
   "success": true,
-  "projectFilePath": "C:\\Projetos\\eventos\\projeto-ingresso-equipe4\\api\\api.csproj",
+  "projectFilePath": "C:\\Projetos\\eventos_senai_api\\api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Carlos Cavalheiro\\.nuget\\packages\\bouncycastle.cryptography\\2.2.1\\bouncycastle.cryptography.2.2.1.nupkg.sha512",
     "C:\\Users\\Carlos Cavalheiro\\.nuget\\packages\\google.protobuf\\3.25.1\\google.protobuf.3.25.1.nupkg.sha512",
