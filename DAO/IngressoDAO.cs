@@ -304,10 +304,10 @@ public class IngressoDao
         try
         {
             _connection.Open();
-            string query = "SELECT * FROM db_evento.ingressos WHERE codigo_qr = \"@codigo_qr\"";
+            string query = $"SELECT * FROM db_evento.ingressos WHERE codigo_qr = \"{codigo_qr}\"";
 
             MySqlCommand command = new MySqlCommand(query, _connection);
-            command.Parameters.AddWithValue("@codigo_qr", codigo_qr);
+            //command.Parameters.AddWithValue("@codigo_qr", codigo_qr);
             ingresso = ReadAll(command).FirstOrDefault();
         }
         catch (MySqlException ex)
