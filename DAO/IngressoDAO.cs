@@ -189,7 +189,7 @@ public class IngressoDao
         try
         {
             String codeQR = Guid.NewGuid().ToString();
-            ingresso.CodigoQr = codeQR.Substring(0,5) + "@792@" + codeQR.Substring(5);
+            ingresso.CodigoQr = codeQR.Substring(0,5) + "-792-" + codeQR.Substring(5);
 
             _connection.Open();
             const string query = "INSERT INTO ingressos (lote_id, pedidos_id, pedidos_usuarios_id, status, tipo, data_utilizacao, valor, codigo_qr, ativo) " +

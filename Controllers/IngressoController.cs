@@ -96,7 +96,7 @@ public class IngressoController : ControllerBase
         {
             if(ingresso.Status.ToString().ToLower() == "pendente")
                 return Unauthorized("Ingresso não pago!");
-            else if(ingresso.Status.ToString().ToLower() == "valido")
+            else if(ingresso.Status.ToString().ToLower() == "validado")
             {
                 ingresso.Status = "Utilizado";
                 ingresso.DataUtilizacao = DateTime.Now;
