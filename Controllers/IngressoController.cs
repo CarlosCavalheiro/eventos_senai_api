@@ -94,11 +94,11 @@ public class IngressoController : ControllerBase
         }
         else
         {
-            if(ingresso.Status == "pendente")
+            if(ingresso.Status.ToString().ToLower() == "pendente")
                 return Unauthorized("Ingresso não pago!");
-            else if(ingresso.Status == "valido")
+            else if(ingresso.Status.ToString().ToLower() == "valido")
             {
-                ingresso.Status = "utilizado";
+                ingresso.Status = "Utilizado";
                 ingresso.DataUtilizacao = DateTime.Now;
                 _ingressoDao.Update(ingresso);
                 return Ok(new { mensagem = "Acesso concedido!", ingresso }); 
