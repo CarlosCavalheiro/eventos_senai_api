@@ -87,8 +87,9 @@ public class IngressoController : ControllerBase
     public IActionResult GetLoginAsync(string codigo_qr)
     {
         string decodedCodigoQr = Uri.UnescapeDataString(codigo_qr);
+        Console.WriteLine(decodedCodigoQr);        
         var ingresso = _ingressoDao.GetIngressoByCodigoQr(decodedCodigoQr);
-
+        Console.WriteLine(ingresso);
         if (ingresso == null)
         {
             return Unauthorized("Qr Code não Existe");
