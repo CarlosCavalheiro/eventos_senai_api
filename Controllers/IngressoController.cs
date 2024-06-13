@@ -86,20 +86,19 @@ public class IngressoController : ControllerBase
     [HttpPost("Verifica/{codigo_qr}")]
     public IActionResult GetLoginAsync(string codigo_qr)
     {
-        string decodedCodigoQr = Uri.UnescapeDataString(codigo_qr);
-        Console.WriteLine(decodedCodigoQr);        
+        string decodedCodigoQr = Uri.UnescapeDataString(codigo_qr);    
         var ingresso = _ingressoDao.GetIngressoByCodigoQr(decodedCodigoQr);
-        Console.WriteLine(ingresso);
+  
         if (ingresso == null)
         {
-            return Unauthorized("Qr Code não Existe");
+            return Unauthorized(new { mensagem = "Qr Code NÃO encontrado!!", decodedCodigoQr });
         }
         else
         {
             string status = ingresso.Status.ToString().ToLower();
             if (status == "pendente")
                 return Unauthorized("Ingresso não pago!");
-            else if (status == "valido")
+            else if (status == "validado")
             {
                 ingresso.Status = "Utilizado";
                 ingresso.DataUtilizacao = DateTime.Now;
