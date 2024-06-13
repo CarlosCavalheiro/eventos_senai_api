@@ -86,7 +86,8 @@ public class IngressoController : ControllerBase
     [HttpPost("Verifica/{codigo_qr}")]
     public IActionResult GetLoginAsync(string codigo_qr)
     {
-        var ingresso = _ingressoDao.GetIngressoByCodigoQr(codigo_qr);
+        string decodedCodigoQr = Uri.UnescapeDataString(codigo_qr);
+        var ingresso = _ingressoDao.GetIngressoByCodigoQr(decodedCodigoQr);
 
         if (ingresso == null)
         {
@@ -94,21 +95,23 @@ public class IngressoController : ControllerBase
         }
         else
         {
-            if(ingresso.Status.ToString().ToLower() == "pendente")
+            string status = ingresso.Status.ToString().ToLower();
+            if (status == "pendente")
                 return Unauthorized("Ingresso não pago!");
-            else if(ingresso.Status.ToString().ToLower() == "validado")
+            else if (status == "valido")
             {
                 ingresso.Status = "Utilizado";
                 ingresso.DataUtilizacao = DateTime.Now;
                 _ingressoDao.Update(ingresso);
-                return Ok(new { mensagem = "Acesso concedido!", ingresso }); 
+                return Ok(new { mensagem = "Acesso concedido!", ingresso });
             }
             else
             {
-                return Unauthorized(new { mensagem = "Qr Code Inválido!", codigo_qr});
+                return Unauthorized(new { mensagem = "Qr Code Inválido!", codigo_qr });
             }
         }
     }
+
 
     [HttpGet("quantidadeByTipoByEvento/{id}")]
         public IActionResult GetQuatidadeIngressoByTipoByEvento(int id) // Id do evento desejado
